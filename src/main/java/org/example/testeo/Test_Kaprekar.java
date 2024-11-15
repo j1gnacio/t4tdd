@@ -50,39 +50,4 @@ public class Test_Kaprekar{
         // Prueba con el número 1000 (llega a 6174 en 5 iteraciones)
         Assertions.assertEquals(5, itKaprekar(1000));
     }
-    // Función que realiza la operación de Kaprekar
-    public static int kaprekarOp(int number) {
-        // Convertir el número a una cadena de caracteres
-        String numStr = String.format("%04d", number); // Asegurarse de que tenga 4 dígitos
-
-        // Crear un array de caracteres y ordenarlo
-        char[] digits = numStr.toCharArray();
-        Arrays.sort(digits);
-
-        // Crear el número menor y mayor
-        String asc = new String(digits);
-        String desc = new StringBuilder(asc).reverse().toString();
-
-        // Convertir de nuevo a enteros
-        int smaller = Integer.parseInt(asc);
-        int larger = Integer.parseInt(desc);
-
-        // Realizar la resta
-        return larger - smaller;
-    }
-    // Función que cuenta las iteraciones hasta llegar a la constante de Kaprekar
-    public static int itKaprekar(int number) {
-        if (number < 1000 || number > 9999) {
-            throw new IllegalArgumentException("El número debe ser de 4 dígitos.");
-        }
-
-        int iterations = 0;
-        while (number != 6174) {
-            number = kaprekarOp(number);
-            iterations++;
-        }
-        return iterations;
-    }
-
-
 }
